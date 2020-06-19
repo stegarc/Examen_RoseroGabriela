@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Cita Perfecta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto:100);
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+    <div class="flat-form">
+        <ul class="tabs">
+            <li>
+                <a href="#login" class="active">Login</a>
+            </li>
+            <li>
+                <a href="#register">Registro</a>
+            </li>
+            <li>
+                <a href="#reset">Reset Password</a>
+            </li>
+        </ul>
+        <div id="login" class="form-action show">
+            <h1>Login de Cita Perfecta</h1>
+            <form>
+                <ul>
+                    <li>
+                        <input type="text" placeholder="Username" />
+                    </li>
+                    <li>
+                        <input type="password" placeholder="Password" />
+                    </li>
+                    <li>
+                        <input type="submit" value="Login" class="button" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!--/#login.form-action-->
+        <div id="register" class="form-action hide">
+            <h1>Registro</h1>
+            <form>
+                <ul>
+                    <li>
+                        <input type="text" placeholder="Nombre" />
+                    </li>
+                    <li>
+                        <input type="text" placeholder="Telefono Convencional" />
+                    </li>
+                    <li>
+                        <input type="text" placeholder="Telefono Movil" />
+                    </li>
+                    <li>
+                        <input type="text" placeholder="Correo Electronico" />
+                    </li>
+                    <li>
+                        <input type="password" placeholder="Password" />
+                    </li>
+                    <li>
+                        <input type="text" placeholder="Nacionalidad" />
+                    </li>
+                    <li>
+                        <input type="text" placeholder="Pais" />
+                    </li>
+                    <li>
+                        <input type="text" placeholder="Ciudad" />
+                    </li>
+                    <li>
+                        <input type="submit" value="Registrar" class="button" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!--/#register.form-action-->
+        <div id="reset" class="form-action hide">
+            <h1>Reset Password</h1>
+            <p>Se enviara a su correo la nueva password generada.</p>
+            <form>
+                <ul>
+                    <li>
+                        <input type="text" placeholder="Email" />
+                    </li>
+                    <li>
+                        <input type="submit" value="Enviar" class="button" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!--/#register.form-action-->
+    </div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
