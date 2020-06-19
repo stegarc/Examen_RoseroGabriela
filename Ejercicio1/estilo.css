@@ -1,9 +1,10 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.table {
+    background-color: rgb(70, 59, 29);
+    padding-right: 10%;
 }
 
 h1 {
@@ -27,11 +28,11 @@ header {
 section {
     display: -webkit-flex;
     display: flex;
+    background-color: rgb(70, 59, 29);
 }
 
 nav {
     background: rgb(95, 63, 4);
-    padding: 20px;
 }
 
 ul {
@@ -80,8 +81,18 @@ li a:hover:not(.active) {
 article {
     background-color: rgb(70, 59, 29);
     padding: 20px;
-    padding-right: 70px;
-    padding-left: 40px;
+    padding-right: 120px;
+    padding-left: 20px;
+    text-align: justify;
+}
+
+article ul {
+    text-align: justify;
+    color: black;
+}
+
+article li {
+    color: black;
     text-align: justify;
 }
 
@@ -92,7 +103,7 @@ footer {
     color: white;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
     section {
         -webkit-flex-direction: column;
         flex-direction: column;
