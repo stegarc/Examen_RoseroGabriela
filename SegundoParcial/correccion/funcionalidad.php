@@ -2,24 +2,19 @@
 include("./service/conexion.php"); 
   $cod_modulo = '';
   $nombre = '';
-  $estado = '';
   $descripcion = '';
   $url_principal = '';
+  $orden='';
   $accion = "Agregar";
-  $nombre1 = '';
-      $direccion1 = '';
-      $url_principal1 = '';
-      $cod_funcionalidad1= '';
-      $descripcion1= '';
 
   if (isset($_GET['cod_funcionalidad'])) {
     $result_g = $conn->query("SELECT * FROM SEG_FUNCIONALIDAD WHERE COD_FUNCIONALIDAD=" . $_GET['cod_funcionalidad']);
     if(mysqli_num_rows($result_g) > 0){
       $row = mysqli_fetch_array($result_g);
-      $nombre1 = $row['NOMBRE'];
-      $direccion1 = $row['DIRECCION'];
-      $url_principal1 = $row['URL_PRINCIPAL'];
-      $cod_funcionalidad1 = $row['COD_FUNCIONALIDAD'];
+      $nombre = $row['NOMBRE'];
+      $descripcion = $row['DESCRIPCION'];
+      $url_principal = $row['URL_PRINCIPAL'];
+      $cod_funcionalidad = $row['COD_FUNCIONALIDAD'];
       $accion = "Modificar";
     }
 }
@@ -95,12 +90,12 @@ include("./service/conexion.php");
                                 <h6 class="m-0 font-weight-bold text-primary">Funcionalidades:</h6>
                             </div>
                             <div class="card-body">
-                                <form class="" id="forma" name="forma" method="post" action="funcionalidad.php">
+                                <form id="forma1" name="forma1" action="funcionalidad.php" method="POST">
                                     <div class="card-body border border-top-0 rounded-bottom-sm p-7">
                                         <div class="row">
                                             <div class="form-group form-group-icon col-lg-6">
                                                 <label for="sedeoption">Modulo</label>
-                                                <?php
+                                                <?php error_reporting(E_ALL ^ E_NOTICE);
                                             $query = 'SELECT * FROM SEG_MODULO WHERE ESTADO="ACT"';
                                             $result = $conn->query($query);
                                             ?>
@@ -109,7 +104,7 @@ include("./service/conexion.php");
                                                     <?php
                                                 while ($row = $result->fetch_array()) {
                                                 ?>
-                                                    <option value=" <?php echo $row['COD_MODULO'] ?> ">
+                                                    <option value=" <?php echo $row['COD_MODULO']; ?> ">
                                                         <?php echo $row['NOMBRE']; ?>
                                                     </option>
                                                     <?php
@@ -119,17 +114,12 @@ include("./service/conexion.php");
                                             </div>
                                         </div>
                                         <div class="row ">
-                                            <input type="hidden" name="cod_funcionalidad" class="form-control"
-                                                value="<?php echo $cod_funcionalidad; ?>">
                                             <div class="form-group form-group-icon col-lg-6 ">
                                                 <input type="submit" class="btn btn-danger text-white text-uppercase"
                                                     name="submit" value="Aceptar">
-
-                                            
-
+                                            </div>
                                         </div>
-                                    </div>
-
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -156,15 +146,13 @@ include("./service/conexion.php");
                                     <tbody>
 
                                         <?php 
-                                   error_reporting(E_ALL ^ E_NOTICE);
                                     $result_g= $conn->query("SELECT * FROM SEG_FUNCIONALIDAD WHERE COD_MODULO=".$_POST['orden']);
                                     if(isset($_POST['submit']) && mysqli_num_rows($result_g) > 0){                                     
                                     while($row = mysqli_fetch_assoc($result_g)){
                                             ?>
                                         <tr>
-                                            <td><a href="funcionalidad.php?cod_funcionalidad=<?php echo $row["COD_FUNCIONALIDAD"]; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#logoutModal"><?php echo "FU".$row["COD_FUNCIONALIDAD"]; ?></a>
+                                            <td><a
+                                                        href="funcionalidad.php?cod_funcionalidad=<?php echo $row['COD_FUNCIONALIDAD']; ?>"><?php echo "FU".$row["COD_FUNCIONALIDAD"]; ?></a>
                                             </td>
                                             <td><?php echo $row ["NOMBRE"];?></td>
                                             <td><?php echo $row ["URL_PRINCIPAL"];?></td>
@@ -187,13 +175,53 @@ include("./service/conexion.php");
 
                                 </table>
                             </div>
-                            <a class="btn btn-danger text-white text-uppercase" href="#" data-toggle="modal"
-                                data-target="#logoutModal">Nuevo
-                            </a>
                             <input type="button" class="btn btn-danger text-white text-uppercase" name="eliminar"
                                 value="Eliminar" onclick="eliminarForma();">
                         </div>
-                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-11 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Funcionalidades:</h6>
+                        </div>
+                        <div class="card-body">
+                        <form name="forma1" action="./service/funcionalidadService.php" method="POST">
+                    <div class="card-body border border-top-0 rounded-bottom-sm p-7">
+                        <div class="row">
+                        <div class="form-group form-group-icon col-lg-6 ">
+                                                <label for="nombre ">Nombre</label>
+                                                <input type="text" class="form-control border-warning rounded-sm "
+                                                    name="nombre" value="<?php echo $nombre; ?>" required>
+                                            </div>
+                            <div class="form-group form-group-icon col-lg-6">
+                                <label for="zip-code">URL Principal</label>
+                                <input type="text" class="form-control border-warning rounded-sm" name="url_principal"
+                                    value="<?php echo $url_principal; ?>" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-group-icon col-lg-6">
+                                <label for="direccion">Descripción</label>
+                                <input type="text" class="form-control border-warning rounded-sm" name="descripcion"
+                                    value="<?php echo $descripcion; ?>" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <input type="hidden" name="cod_funcionalidad" class="form-control"
+                                value="<?php echo $cod_funcionalidad; ?>">
+                            <input type="hidden" name="cod_modulo" class="form-control"
+                                value="<?php echo $_POST['orden']; ?>">
+                            <input type="hidden" name="accion" class="form-control" value="<?php echo $accion; ?>">
+                            <input type="submit" class="btn btn-danger text-white text-uppercase" name="funcionalidadService"
+                                value="<?php echo $accion; ?>">
+                        </div>
+                </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,53 +234,6 @@ include("./service/conexion.php");
     <a class="scroll-to-top rounded " href="#page-top ">
         <i class="fas fa-angle-up "></i>
     </a>
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Funcionalidad</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form class="" id="forma" name="forma" method="post" action="./service/funcionalidadService.php">
-                    <div class="card-body border border-top-0 rounded-bottom-sm p-7">
-                        <div class="row">
-                            <div class="form-group form-group-icon col-lg-6">
-                                <label for="niveloption">Nombre</label>
-                                <input type="text" class="form-control border-warning rounded-sm" name="nombre"
-                                    value="<?php echo $nombre1 ?>" required>
-
-                            </div>
-                            <div class="form-group form-group-icon col-lg-6">
-                                <label for="zip-code">URL Principal</label>
-                                <input type="text" class="form-control border-warning rounded-sm" name="url_principal"
-                                    value="<?php echo $url_principal1 ?>" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group form-group-icon col-lg-6">
-                                <label for="direccion">Descripción</label>
-                                <input type="text" class="form-control border-warning rounded-sm" name="descripcion"
-                                    value="<?php echo $descripcion1 ?>" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <input type="hidden" name="cod_funcionalidad" class="form-control"
-                                value="<?php echo $cod_funcionalidad1; ?>">
-                            <input type="hidden" name="cod_modulo" class="form-control"
-                                value="<?php echo $_POST['orden'] ?>">
-                            <input type="hidden" name="accion" class="form-control" value="<?php echo $accion; ?>">
-                            <input type="submit" class="btn btn-danger text-white text-uppercase" name="accion"
-                                value="<?php echo $accion; ?>">
-
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -263,7 +244,7 @@ include("./service/conexion.php");
 </body>
 <script>
 function eliminarForma() {
-    document.getElementById('cod_fun').submit();
+    document.getElementById('forma').submit();
 }
 </script>
 

@@ -15,7 +15,7 @@ if (isset($_POST['funcionalidadService']) && $_POST['accion'] == "Agregar") {
 } elseif (isset($_POST['funcionalidadService']) && $_POST['accion'] == "Modificar") {
     echo $_POST['nombre'];
     echo $_POST['descripcion'];
-    echo $_POST['url_principal'];
+    echo $_POST['url_principal'];  
     $stmt = $conn->prepare("UPDATE SEG_FUNCIONALIDAD SET nombre=? , url_principal=?, descripcion=? WHERE COD_FUNCIONALIDAD=" . $_POST['cod_funcionalidad']);
     $stmt->bind_param('sss', $nombre, $url_principal,$descripcion);
     $nombre = $_POST['nombre'];    
