@@ -158,10 +158,7 @@ include("./service/conexion.php");
                                             <td><?php echo $row ["URL_PRINCIPAL"];?></td>
                                             <td><?php echo $row ["DESCRIPCION"];?></td>
                                             <td><a
-                                                    href="funcionalidad.php?cod_funcionalidad=<?php echo $row ['COD_FUNCIONALIDAD'];?>">
-                                                    <input type="radio" class="border-warning rounded-sm"
-                                                        name="eliCodigo"
-                                                        value="<?php echo $row ['COD_FUNCIONALIDAD']; ?>">
+                                                        href="service/funcionalidadService.php?cod_funcionalidad=<?php echo $row['COD_FUNCIONALIDAD']; ?>">X</a>
                                             </td>
                                         </tr>
                                         <?php }
@@ -175,8 +172,6 @@ include("./service/conexion.php");
 
                                 </table>
                             </div>
-                            <input type="button" class="btn btn-danger text-white text-uppercase" name="eliminar"
-                                value="Eliminar" onclick="eliminarForma();">
                         </div>
                     </div>
                 </div>
@@ -242,10 +237,5 @@ include("./service/conexion.php");
 
     <script src="js/sb-admin-2.min.js"></script>
 </body>
-<script>
-function eliminarForma() {
-    document.getElementById('forma').submit();
-}
-</script>
 
 </html>

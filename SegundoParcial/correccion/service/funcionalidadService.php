@@ -25,14 +25,15 @@ if (isset($_POST['funcionalidadService']) && $_POST['accion'] == "Agregar") {
     $stmt->execute();
     $stmt->close();
     header('Location: ../funcionalidad.php');
-  }  elseif (isset($_POST["eliCodigo"])){
-    $stmt=$conn->prepare("DELETE FROM SEG_FUNCIONALIDAD WHERE COD_FUNCIONALIDAD=?");
-    $stmt->bind_param("i",$cod_funcionalidad);
-    $cod_funcionalidad=$_POST["eliCodigo"];
-    $stmt->execute();
-    $stmt->close();
-    $cod_funcionalidad="";
-header('Location: ../funcionalidad.php');
+  }  
+
+    if(isset($_GET['cod_funcionalidad'])) {
+      $stmt=$conn->prepare("DELETE FROM SEG_FUNCIONALIDAD WHERE COD_FUNCIONALIDAD=?");
+      $stmt->bind_param('i', $cod_funcionalidad);
+      $cod_funcionalidad = $_GET['cod_funcionalidad'];
+      $stmt->execute();
+      $stmt->close();
+      header('Location: ../funcionalidad.php');
     }
 
 ?>
