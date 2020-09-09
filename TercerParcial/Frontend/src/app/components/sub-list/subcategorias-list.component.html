@@ -1,6 +1,15 @@
 <div class="list row">
     <div class="p-col-12 p-lg-8">
       <div class="table-wrapper">
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <select        
+          >
+          <option *ngFor="let categoria of categorias; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveCategoria(categoria, i)" class="text-center" >{{categoria.DESCRIPCION}}</option>
+        </select>
+        </div>
       <table class="fl-table" >
         <thead>
           <tr class="text-center">

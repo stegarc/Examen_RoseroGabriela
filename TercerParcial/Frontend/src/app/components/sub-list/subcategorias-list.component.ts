@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SubcategoriaService } from 'src/app/services/subcategoria.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subcategoria } from 'src/app/models/subcategoria';
+import { CategoriaService } from 'src/app/services/categoria.service';
+import { Categoria } from 'src/app/models/categoria';
+
 
 @Component({
   selector: 'app-subcategorias-list',
@@ -9,23 +12,38 @@ import { Subcategoria } from 'src/app/models/subcategoria';
   styleUrls: ['./subcategorias-list.component.css']
 })
 export class SubcategoriasListComponent implements OnInit {
-
+  categorias: any = [];
+  currentCategoria = null;
+  categoria = {
+    COD_CATEGORIA: '',
+    DESCRIPCION: ''
+  };
     subcategorias: any = [];
   currentSubcategoria = null;
   currentIndex = -1;
-  nombre = '';
-  cols: any[];
   subcategoria: Subcategoria;
 
   constructor(private subcategoriaService: SubcategoriaService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, private categoriaService: CategoriaService) { }
 
   ngOnInit(): void {
-    this.retrieveSubcategorias();
+    this.retrieveSubcategorias();    
+    this.retrieveCategorias();
     this.subcategoria = new Subcategoria();
+    this.categoria = new Categoria();
   }
 
+  
+  retrieveCategorias(): void {
+    this.categoriaService.getAll()
+      .subscribe(
+        res => {
+          this.categorias = res;
+        },
+        err => console.error(err)
+      );
+  }
   retrieveSubcategorias(): void {
     this.subcategoriaService.getAll()
       .subscribe(
@@ -59,5 +77,9 @@ export class SubcategoriasListComponent implements OnInit {
         });
   }
 
+  setActiveCategoria(categoria, index): void {
+    this.currentCategoria = categoria;
+    this.currentIndex = index;
+  }
 
 }
