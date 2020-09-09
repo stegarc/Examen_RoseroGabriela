@@ -1,0 +1,47 @@
+<div class="layout-topbar">
+    <div href="#" class="layout-topbar-logo">
+        <a href="#">
+            <img class="logo" src="assets/layout/images/logo.png" alt="prestige-layout"/>
+        </a>
+    </div>
+    <a class="layout-menu-button" href="#" (click)="app.onMenuButtonClick($event)">
+        <i class="pi pi-bars"></i>
+    </a>
+
+    <ul class="layout-topbar-menu" role="menu">
+        <li #profile class="user-profile" role="menuitem" [ngClass]="{'active-topmenuitem':app.activeTopbarItem === profile}">
+            <a href="#" (click)="app.onTopbarItemClick($event,profile)">
+                <div class="user-profile-info profile-link">
+                    <span class="user-profile-name">Gabriela Rosero</span>
+                    <span class="user-profile-role">Alumno</span>
+                </div>
+                <img class="logo" src="assets/layout/images/avatar/gaby.jpg" alt="prestige-layout" />
+            </a>
+            <ul class="fadeInDown">
+                <li class="profile-detail">
+                    <div class="user-profile-info">
+                        <img class="logo" src="assets/layout/images/avatar/avatar-ava.jpg" alt="prestige-layout" />
+                        <div class="profile-info">
+                            <span class="user-profile-name">Ava Gregoraci</span>
+                            <span class="user-profile-role">Design Ops</span>
+                        </div>
+                        <a href="#" class="profile-detail-icon" (click)="app.onTopbarSubItemClick($event)">
+                            <i class="pi pi-sign-out"></i>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="pi pi-user"></i>
+                        <div class="menu-text">
+                            <span class="menu-title">Profile</span>
+                            <span class="menu-subtitle">Edit your profile</span>
+                        </div>
+
+                        <i class="right-icon pi pi-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
