@@ -46,9 +46,9 @@
           {{ currentSubcategoria.FECHA_CREACION | date: 'dd/MM/yyyy'}}
         </div>
   
-        <a class="badge badge-warning" routerLink="/subcategorias/{{ currentSubcategoria.COD_SUB_CATEGORIA }}">
-          EDITAR
-        </a>
+        <button class="badge badge-danger mr-2" (click)="deleteSubcategoria()">
+          ELIMINAR
+        </button>
       </div>
   
       <div *ngIf="!currentSubcategoria">

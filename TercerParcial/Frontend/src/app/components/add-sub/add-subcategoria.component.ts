@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubcategoriaService } from 'src/app/services/subcategoria.service';
+import { CategoriaService } from 'src/app/services/categoria.service';
+import { Categoria } from 'src/app/models/categoria';
 
 @Component({
   selector: 'app-add-subcategoria',
@@ -14,11 +16,18 @@ export class AddSubcategoriaComponent implements OnInit {
     DESCRIPCION: '',     
     FECHA_CREACION: ''
   };
+  currentCategoria = null;
+  currentIndex = -1;
+  categoria = {
+    COD_CATEGORIA: '',
+    DESCRIPCION: ''
+  };
   submitted: boolean;
 
-  constructor(private subcategoriaService: SubcategoriaService) { }
+  constructor(private subcategoriaService: SubcategoriaService, private categoriaService: CategoriaService) { }
 
   ngOnInit(): void {
+    this.categoria = new Categoria();
   }
 
 
@@ -51,6 +60,11 @@ export class AddSubcategoriaComponent implements OnInit {
       DESCRIPCION: '', 
       FECHA_CREACION: ''
     };
+  }
+
+  setActiveCategoria(categoria, index): void {
+    this.currentCategoria = categoria;
+    this.currentIndex = index;
   }
 
 }

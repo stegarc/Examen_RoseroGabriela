@@ -6,9 +6,6 @@ import {AppMainComponent} from './app.main.component';
     template: `
         <div id="layout-config" class="layout-config" [ngClass]="{'layout-config-active': app.configDialogActive}" (click)="app.configClick=true">
             <div class="layout-config-content">
-				<a href="#" id="layout-config-button" class="layout-config-button" (click)="onConfigButtonClick($event)">
-					<i class="pi pi-cog"></i>
-				</a>
                 <a href="#" class="layout-config-close" (click)="onConfigCloseClick($event)">
                     <i class="pi pi-times"></i>
                 </a>
