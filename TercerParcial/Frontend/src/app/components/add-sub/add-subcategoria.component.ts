@@ -9,6 +9,7 @@ import { Categoria } from 'src/app/models/categoria';
   styleUrls: ['./add-subcategoria.component.css']
 })
 export class AddSubcategoriaComponent implements OnInit {
+  categorias: any = [];
     subcategoria = {
     COD_CATEGORIA: '',
     COD_SUB_CATEGORIA: '',
@@ -27,9 +28,19 @@ export class AddSubcategoriaComponent implements OnInit {
   constructor(private subcategoriaService: SubcategoriaService, private categoriaService: CategoriaService) { }
 
   ngOnInit(): void {
+    this.retrieveCategorias();
     this.categoria = new Categoria();
   }
 
+  retrieveCategorias(): void {
+    this.categoriaService.getAll()
+      .subscribe(
+        res => {
+          this.categorias = res;
+        },
+        err => console.error(err)
+      );
+  }
 
   saveSubcategoria(): void {
     const data = {
