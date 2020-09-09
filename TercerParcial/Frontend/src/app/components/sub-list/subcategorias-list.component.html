@@ -1,0 +1,62 @@
+<div class="list row">
+    <div class="p-col-12 p-lg-8">
+      <div class="table-wrapper">
+      <table class="fl-table" >
+        <thead>
+          <tr class="text-center">
+            <th scope="col">Cod Sub categoria</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha Creacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subcategoria of subcategorias; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveSubcategoria(subcategoria, i)" class="text-center">
+            <th scope="row">{{subcategoria.COD_SUB_CATEGORIA}}</th>
+            <td>{{subcategoria.NOMBRE}}</td>
+            <td>{{subcategoria.FECHA_CREACION | date: 'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    <div class="p-col-12 p-lg-8">
+      <div class="card table">
+      <div *ngIf="currentSubcategoria">
+        <h4>Subcategoria</h4>
+        <div>
+          <label><strong>Categoria:</strong></label> {{ currentSubcategoria.COD_CATEGORIA }}
+        </div>
+        <div>
+          <label><strong>Cod Sub categoria:</strong></label>
+          {{ currentSubcategoria.COD_SUB_CATEGORIA }}
+        </div>
+        <div>
+          <label><strong>Nombre:</strong></label>
+          {{ currentSubcategoria.NOMBRE }}
+        </div>
+        <div>
+          <label><strong>Descripcion:</strong></label>
+          {{ currentSubcategoria.DESCRIPCION }}
+        </div>
+        <div>
+          <label><strong>Fecha creacion:</strong></label>
+          {{ currentSubcategoria.FECHA_CREACION | date: 'dd/MM/yyyy'}}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/subcategorias/{{ currentSubcategoria.COD_SUB_CATEGORIA }}">
+          EDITAR
+        </a>
+      </div>
+  
+      <div *ngIf="!currentSubcategoria">
+        <br />
+      </div>
+      </div>
+    </div>
+    
+</div>
+
+

@@ -12,9 +12,10 @@ export class AppMenuComponent implements OnInit {
     constructor(public app: AppMainComponent) {}
 
     ngOnInit() {
-        this.model = [            
+        this.model = [
+            {label: 'AGREGAR', icon: 'pi pi-fw pi-star', routerLink: ['/add']},
             {
-                label: 'SUB CATEGORIA', icon: 'pi pi-fw pi-file',  routerLink: ['/subcategoria']
+                label: 'SUBCATEGORIA LISTAR', icon: 'pi pi-fw pi-file',  routerLink: ['/subcategorias']
             }
         ];
     }

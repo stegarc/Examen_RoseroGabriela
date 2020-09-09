@@ -205,9 +205,6 @@
                                 {{col.header}}
                                 <p-sortIcon [field]="col.field"></p-sortIcon>
                             </th>
-                            <th style="width: 8em; text-align: center;">
-                                <button pButton type="button" icon="pi pi-cog"></button>
-                            </th>
                         </tr>
                         <tr>
                             <th *ngFor="let col of columns" [ngSwitch]="col.field" style="padding: .5em;">
