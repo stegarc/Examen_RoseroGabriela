@@ -16,7 +16,7 @@ import { AppMainComponent } from './app.main.component';
 
 
 import { SubcategoriasListComponent } from './components/sub-list/subcategorias-list.component';
-import { SubcategoriaDetailsComponent } from './components/sub-details/subcategorias-details.component';
+import { SubcategoriaDetailsComponent } from './components/sub-details/subcategoria-details.component';
 import { AddSubcategoriaComponent } from './components/add-sub/add-subcategoria.component';
 
 export const routes: Routes = [

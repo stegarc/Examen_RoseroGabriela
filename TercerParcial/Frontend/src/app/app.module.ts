@@ -112,7 +112,7 @@ import {BreadcrumbService} from './breadcrumb.service';
 import {MenuService} from './app.menu.service';
 
 import { SubcategoriasListComponent } from './components/sub-list/subcategorias-list.component';
-import { SubcategoriaDetailsComponent } from './components/sub-details/subcategorias-details.component';
+import { SubcategoriaDetailsComponent } from './components/sub-details/subcategoria-details.component';
 import { AddSubcategoriaComponent } from './components/add-sub/add-subcategoria.component';
 
 @NgModule({
