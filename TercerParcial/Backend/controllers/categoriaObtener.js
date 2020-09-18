@@ -25,7 +25,7 @@ exports.findAll = (req, res) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving aspirantes."
+                    err.message || "Some error occurred while retrieving categorias."
             });
         else res.send(data);
     });
